@@ -9,7 +9,7 @@ cache:
     - $HOME/.m2
 
 script:
-  - ./mvnw clean test
+  - ./mvnw clean verify
 
 after_success:
   - bash <(curl -s https://codecov.io/bash)
