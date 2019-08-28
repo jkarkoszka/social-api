@@ -14,6 +14,8 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.test.web.servlet.MockMvc;
 
+import java.util.Date;
+
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.springframework.http.MediaType.APPLICATION_JSON;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
@@ -48,10 +50,10 @@ class PostsControllerTest {
         var addPostRequest = new AddPostRequest(message);
         var currentUserId = new ObjectId("507f1f77bcf86cd799439011");
         var otherUserId = new ObjectId("507f1f77bcf86cd799439012");
-        var expectedPost = testPostCreator.create("message123", currentUserId);
+        var expectedPost = testPostCreator.create("message123", currentUserId, new Date(156698112013L));
         testUserCreator.create(otherUserId);
-        postRepository.save(testPostCreator.create("message1", otherUserId));
-        postRepository.save(testPostCreator.create("message2", otherUserId));
+        postRepository.save(testPostCreator.create("message1", otherUserId, new Date(156698112014L)));
+        postRepository.save(testPostCreator.create("message2", otherUserId, new Date(156698112015L)));
 
         //when
         var result = mvc.perform(post("/posts")

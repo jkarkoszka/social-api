@@ -9,12 +9,12 @@ import java.util.Date;
 @Component
 public class TestPostCreator {
 
-    public Post create(String message, ObjectId userId) {
+    public Post create(String message, ObjectId userId, Date date) {
         return Post.builder()
                 .id(new ObjectId())
                 .message(message)
                 .userId(userId)
-                .createdDate(new Date())
+                .createdDate(date)
                 .build();
     }
 }

@@ -12,6 +12,7 @@ import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMock
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.web.servlet.MockMvc;
 
+import java.util.Date;
 import java.util.Set;
 
 import static org.hamcrest.Matchers.is;
@@ -57,10 +58,10 @@ class PostsFollowingUsersControllerTest {
         var secondFollowingUserMessage = "second following post";
         var thirdFollowingUserMessage = "third following post";
         var fourthFollowingUserMessage = "third following post";
-        postRepository.save(testPostCreator.create(firstFollowingUserMessage, firstFollowingUserId));
-        postRepository.save(testPostCreator.create(secondFollowingUserMessage, secondFollowingUserId));
-        postRepository.save(testPostCreator.create(thirdFollowingUserMessage, thirdFollowingUserId));
-        postRepository.save(testPostCreator.create(fourthFollowingUserMessage, secondFollowingUserId));
+        postRepository.save(testPostCreator.create(firstFollowingUserMessage, firstFollowingUserId, new Date(156698112013L)));
+        postRepository.save(testPostCreator.create(secondFollowingUserMessage, secondFollowingUserId, new Date(156698112014L)));
+        postRepository.save(testPostCreator.create(thirdFollowingUserMessage, thirdFollowingUserId, new Date(156698112015L)));
+        postRepository.save(testPostCreator.create(fourthFollowingUserMessage, secondFollowingUserId, new Date(156698112016L)));
 
         //when
         var result = mvc.perform(get("/posts/followingUsers")
@@ -98,7 +99,7 @@ class PostsFollowingUsersControllerTest {
         userRepository.save(testUserCreator.create(secondFollowingUserId));
         userRepository.save(testUserCreator.create(thirdFollowingUserId));
         userRepository.save(testUserCreator.create(currentUserId, Set.of(firstFollowingUserId, secondFollowingUserId, thirdFollowingUserId)));
-        postRepository.save(testPostCreator.create("message", currentUserId));
+        postRepository.save(testPostCreator.create("message", currentUserId, new Date(156698112013L)));
 
         //when
         var result = mvc.perform(get("/posts/followingUsers")
@@ -121,10 +122,10 @@ class PostsFollowingUsersControllerTest {
         userRepository.save(testUserCreator.create(secondFollowingUserId));
         userRepository.save(testUserCreator.create(thirdFollowingUserId));
         userRepository.save(testUserCreator.create(currentUserId, Set.of()));
-        postRepository.save(testPostCreator.create("message", currentUserId));
-        postRepository.save(testPostCreator.create("message1", secondFollowingUserId));
-        postRepository.save(testPostCreator.create("message2", thirdFollowingUserId));
-        postRepository.save(testPostCreator.create("message3", thirdFollowingUserId));
+        postRepository.save(testPostCreator.create("message", currentUserId, new Date(156698112014L)));
+        postRepository.save(testPostCreator.create("message1", secondFollowingUserId, new Date(156698112015L)));
+        postRepository.save(testPostCreator.create("message2", thirdFollowingUserId, new Date(156698112016L)));
+        postRepository.save(testPostCreator.create("message3", thirdFollowingUserId, new Date(156698112017L)));
 
         //when
         var result = mvc.perform(get("/posts/followingUsers")

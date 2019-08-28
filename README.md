@@ -16,9 +16,16 @@ Simple Twitter-Like social API.
 
    ./mvnw spring-boot:run
 
- # API documentation
+## API documentation
 
  Swagger: http://localhost:8080/swagger-ui.html#/
+ 
+## Additional comments
+Why do I pass current user id as a header?
+If we implemented authentication, it would be easy to change it from this mocked header to eg. JWT implementation.
+
+There is a configured pipeline for this project on Travis CI. 
+Code coverage by tests is tracked on codecov.io.
 
 ## Scenarios
 

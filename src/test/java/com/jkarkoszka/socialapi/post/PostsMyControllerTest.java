@@ -12,6 +12,8 @@ import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMock
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.web.servlet.MockMvc;
 
+import java.util.Date;
+
 import static org.hamcrest.Matchers.is;
 import static org.springframework.http.MediaType.APPLICATION_JSON;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
@@ -50,11 +52,11 @@ class PostsMyControllerTest {
         var thirdMessage = "message3";
         userRepository.save(testUserCreator.create(currentUserId));
         userRepository.save(testUserCreator.create(otherUserId));
-        postRepository.save(testPostCreator.create(firstMessage, currentUserId));
-        postRepository.save(testPostCreator.create(secondMessage, currentUserId));
-        postRepository.save(testPostCreator.create(thirdMessage, currentUserId));
-        postRepository.save(testPostCreator.create("message4", otherUserId));
-        postRepository.save(testPostCreator.create("message5", otherUserId));
+        postRepository.save(testPostCreator.create(firstMessage, currentUserId, new Date(156698112013L)));
+        postRepository.save(testPostCreator.create(secondMessage, currentUserId, new Date(156698112014L)));
+        postRepository.save(testPostCreator.create(thirdMessage, currentUserId, new Date(156698112015L)));
+        postRepository.save(testPostCreator.create("message4", otherUserId, new Date(156698112016L)));
+        postRepository.save(testPostCreator.create("message5", otherUserId, new Date(156698112017L)));
 
         //when
         var result = mvc.perform(get("/posts/my")
