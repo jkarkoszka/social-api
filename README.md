@@ -10,7 +10,15 @@ Simple Twitter-Like social API.
     ./mvnw clean package
 ## Test
 
-    ./mvnw clean test
+    ./mvnw clean verify
+
+## Run
+
+   ./mvnw spring-boot:run
+
+ # API documentation
+
+ Swagger: http://localhost:8080/swagger-ui.html#/
 
 ## Scenarios
 
