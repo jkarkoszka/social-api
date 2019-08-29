@@ -8,15 +8,14 @@ import org.springframework.stereotype.Component;
 @AllArgsConstructor
 public class AddUserFollowingService {
 
+    private final FindUserService findUserService;
     private final UserRepository userRepository;
     private final UserCreator userCreator;
     private final AddUserFollowingResponseMapper addUserFollowingResponseMapper;
 
     public AddUserFollowingResponse addUserFollowing(ObjectId currentUserId, AddUserFollowingRequest addUserFollowingRequest) {
-        var currentUser = userRepository.findById(currentUserId)
-                .orElseThrow(() -> new UserNotFoundException(currentUserId));
-        var userToFollow = userRepository.findById(new ObjectId(addUserFollowingRequest.getUserId()))
-                .orElseThrow(() -> new UserNotFoundException(currentUserId));
+        var currentUser = findUserService.findUser(currentUserId);
+        var userToFollow = findUserService.findUser(new ObjectId(addUserFollowingRequest.getUserId()));
         var currentUserToSave = userCreator.createWithNewFollowingUser(currentUser, userToFollow);
         var savedUser = userRepository.save(currentUserToSave);
         return addUserFollowingResponseMapper.map(savedUser);

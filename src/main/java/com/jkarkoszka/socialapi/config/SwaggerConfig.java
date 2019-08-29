@@ -30,6 +30,5 @@ public class SwaggerConfig {
                 .build()
                 .apiInfo(apiInfo())
                 .useDefaultResponseMessages(false);
-
     }
 }

@@ -10,7 +10,7 @@ import java.util.stream.Collectors;
 public class AddUserFollowingResponseMapper {
 
     public AddUserFollowingResponse map(User user) {
-        Set<String> followingUsers = user.getFollowingUsers().stream()
+        var followingUsers = user.getFollowingUsers().stream()
                 .map(ObjectId::toHexString)
                 .collect(Collectors.toSet());
         return new AddUserFollowingResponse(followingUsers);

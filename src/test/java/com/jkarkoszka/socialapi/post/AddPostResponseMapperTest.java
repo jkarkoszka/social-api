@@ -14,7 +14,7 @@ class AddPostResponseMapperTest {
     @Test
     public void shouldMapToAddPostResponse() {
         //given
-        String idAsHexString = "507f1f77bcf86cd799439011";
+        var idAsHexString = "507f1f77bcf86cd799439011";
         var post = Post.builder()
                 .id(new ObjectId(idAsHexString))
                 .message("message123")
