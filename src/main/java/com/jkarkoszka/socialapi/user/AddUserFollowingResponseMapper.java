@@ -3,7 +3,6 @@ package com.jkarkoszka.socialapi.user;
 import org.bson.types.ObjectId;
 import org.springframework.stereotype.Component;
 
-import java.util.Set;
 import java.util.stream.Collectors;
 
 @Component
