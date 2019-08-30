@@ -1,6 +1,6 @@
 package com.jkarkoszka.socialapi.helper;
 
-import com.jkarkoszka.socialapi.user.User;
+import com.jkarkoszka.socialapi.user.repository.User;
 import org.bson.types.ObjectId;
 import org.springframework.stereotype.Component;
 

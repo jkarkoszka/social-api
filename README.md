@@ -32,6 +32,17 @@ Current user ID have to be in MongoDb ObjectId format.
 There is a configured pipeline for this project on Travis CI.
 Code coverage by tests is tracked on codecov.io.
 
+Classes are packaged by feature and then by layer (web, service, repository) eg. post/service, posts/web, user/service, user/web etc.
+
+Between layers are defined entrypoints and each layer has own objects to carry data. 
+
+Naming conventions:
+- controllers: *Rest, *RestRequest, *RestResponse
+- service: *Dto, *ServiceRequest, *ServiceResponse
+- repository: just name of entity without suffix
+
+Classes which are not entrypoint of the layer eg. com.jkarkoszka.socialapi.post.service.PostCreator are in package-private scope.
+
 ## Scenarios
 
 ### Posting
